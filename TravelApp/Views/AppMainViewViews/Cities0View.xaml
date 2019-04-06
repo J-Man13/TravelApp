@@ -15,31 +15,6 @@
              fw:AcrylicWindow.ShowTitleBar="True"  
              Background="White"
              >
-    <UserControl.Resources>
-        <Storyboard x:Key="MenuOpen">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="55"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="155"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="MenuClose">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="155"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="55"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <BooleanToVisibilityConverter x:Key="BoolToVis" />
-    </UserControl.Resources>
-
-    <UserControl.Triggers>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
-            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
-            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
-        </EventTrigger>
-    </UserControl.Triggers>
-    
     <ScrollViewer>
         <StackPanel Grid.Column="0">
             <TextBlock

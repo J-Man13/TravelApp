@@ -14,12 +14,22 @@
         fw:AcrylicWindow.ShowTitleBar="True"  
         Background="White"
     >
-    <Border BorderBrush="#1f4a82" BorderThickness="11">
-        <DockPanel>
-            <Border BorderBrush="#1f4a82" BorderThickness="3" DockPanel.Dock="Left">
-                <StackPanel Orientation="Vertical">
+    <UserControl.Resources>
+        <Storyboard x:Key="sbShowLeftMenu" >
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-280,0,0,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Key="sbHideLeftMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-280,0,0,0" AccelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+    </UserControl.Resources>
 
-                    <TextBlock  DockPanel.Dock="Right"
+    <Border BorderBrush="#1f4a82" BorderThickness="11">
+        <Grid>
+            <StackPanel Panel.ZIndex="2" Name="pnlLeftMenu" Orientation="Horizontal" Height="auto" Width="auto" HorizontalAlignment="Left" Margin="-280,0,0,0">
+                <Border BorderBrush="#1f4a82" BorderThickness="0" Width="auto" Background="white" Opacity="0.95">
+                    <StackPanel Orientation="Vertical">
+
+                        <TextBlock  DockPanel.Dock="Right"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontSize="40"
@@ -34,13 +44,13 @@
                         </Hyperlink>
                     </TextBlock>
 
-                    <Ellipse Height="200" Width="200" Margin="0,0,0,0">
-                        <Ellipse.Fill>
-                            <ImageBrush x:Name="LoginImage"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                        <Ellipse Height="200" Width="200" Margin="0,0,0,0">
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="LoginImage"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
 
-                    <TextBlock  DockPanel.Dock="Right"
+                        <TextBlock  DockPanel.Dock="Right"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontSize="40"
@@ -52,15 +62,15 @@
                                                   MouseAction="LeftClick"/>                        
                                 </Hyperlink.InputBindings>
                             </Hyperlink>
-                    </TextBlock>
+                        </TextBlock>
 
 
-                    <DockPanel Margin="0,0,0,20"
+                        <DockPanel Margin="0,0,0,20"
                                >
-                        <Image  DockPanel.Dock="Left"
+                            <Image  DockPanel.Dock="Left"
                                 Source="\picks\tripIcon.png"
                                 Height="50" Width="50"/>
-                        <TextBlock  DockPanel.Dock="Right"
+                            <TextBlock  DockPanel.Dock="Right"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     FontSize="40">
@@ -70,14 +80,14 @@
                                                   MouseAction="LeftClick"/>                        
                                 </Hyperlink.InputBindings>
                             </Hyperlink>
-                        </TextBlock>
-                    </DockPanel>
+                            </TextBlock>
+                        </DockPanel>
 
-                    <DockPanel Margin="0,0,0,20">
-                        <Image  DockPanel.Dock="Left"
+                        <DockPanel Margin="0,0,0,20">
+                            <Image  DockPanel.Dock="Left"
                                 Source="\picks\cities.png"
                                 Height="50" Width="50"/>
-                        <TextBlock  DockPanel.Dock="Right"
+                            <TextBlock  DockPanel.Dock="Right"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     FontSize="40">
@@ -87,14 +97,14 @@
                                                   MouseAction="LeftClick"/>                        
                                 </Hyperlink.InputBindings>
                             </Hyperlink>
-                        </TextBlock>
-                    </DockPanel>
+                            </TextBlock>
+                        </DockPanel>
 
-                    <DockPanel Margin="0,0,0,20">
-                        <Image  DockPanel.Dock="Left"
+                        <DockPanel Margin="0,0,0,20">
+                            <Image  DockPanel.Dock="Left"
                                 Source="\picks\logout.png"
                                 Height="50" Width="50"/>
-                        <TextBlock  DockPanel.Dock="Right"
+                            <TextBlock  DockPanel.Dock="Right"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     FontSize="40">
@@ -105,34 +115,40 @@
                                                   MouseAction="LeftClick"/>                        
                                 </Hyperlink.InputBindings>                            
                             </Hyperlink>
-                        </TextBlock>
-                    </DockPanel>
+                            </TextBlock>
+                        </DockPanel>
 
-                </StackPanel>
-            </Border>
+                    </StackPanel>
+                </Border>
+                <Grid>
+                    <Button Background="white" Name="btnLeftMenuHide" Width="48" Height="48" Click="btnLeftMenuHide_Click" Content="&lt;" FontSize="20" Visibility="Hidden"/>
+                    <Button Background="white"  Name="btnLeftMenuShow" Width="48" Height="48" Click="btnLeftMenuShow_Click" Content="&gt;" FontSize="20"/>
+                </Grid>
+            </StackPanel>
 
-
-            <Border BorderBrush="#1f4a82" BorderThickness="3" DockPanel.Dock="Top">
-                <Grid >
-                    <Label x:Name="CurrentReviewedContentTopLabel"
+            <DockPanel>
+                <Border BorderBrush="#1f4a82" BorderThickness="3" DockPanel.Dock="Top">
+                    <Grid >
+                        <Label x:Name="CurrentReviewedContentTopLabel"
                            Content="{Binding ContentTop, UpdateSourceTrigger=PropertyChanged}"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="40"
                            Foreground="#1f4a82"/>
-                </Grid>
-            </Border>
+                    </Grid>
+                </Border>
 
-            <Border BorderBrush="#1f4a82" BorderThickness="3" DockPanel.Dock="Top">
-                <Grid DockPanel.Dock="Bottom">
-                    <ContentControl VerticalAlignment="Stretch"
+                <Border BorderBrush="#1f4a82" BorderThickness="3" DockPanel.Dock="Top">
+                    <Grid DockPanel.Dock="Bottom">
+                        <ContentControl VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
                         Content="{Binding CurrentContentPage , UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
-            </Border>
-        </DockPanel>
+                    </Grid>
+                </Border>
+            </DockPanel>
+        </Grid>
     </Border>
     
 </UserControl>
