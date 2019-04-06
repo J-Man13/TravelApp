@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="TravelApp.Views.AppMainViewViews.UserEntityEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TravelApp.Views.AppMainViewViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800"
+             Height="auto" Width="auto"
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+             fw:AcrylicWindow.Enabled="True"
+             fw:AcrylicWindow.ShowTitleBar="True"  
+             Background="White"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock Grid.Row="2"
+                       Grid.Column="3"
+                       Grid.ColumnSpan="3"
+                       Grid.RowSpan="3"
+                       FontSize="33"   
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom" Margin="24,0,24,31"
+            >Login</TextBlock>
+
+        <TextBox x:Name="Login"
+                     Text="{Binding LoginUpdate , UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Column="1"              
+                     Grid.Row="3"
+                     Grid.ColumnSpan="7"
+                     Grid.RowSpan="3"                  
+                     FontSize="30"
+                     HorizontalContentAlignment="Center" Margin="0,28,0,6"
+                     />
+
+        <TextBlock Grid.Row="2"
+                       Grid.Column="11"
+                       Grid.ColumnSpan="3"
+                       Grid.RowSpan="3"
+                       FontSize="33"   
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" Margin="26,31,26,29"
+            >Email</TextBlock>
+
+        <TextBox x:Name="Email"
+                       Text="{Binding MailUpdate , UpdateSourceTrigger=PropertyChanged}"
+                       Grid.Column="9"              
+                       Grid.Row="3"
+                       Grid.ColumnSpan="7"
+                       Grid.RowSpan="3"                  
+                       FontSize="30"
+                       HorizontalContentAlignment="Center" Margin="0,28,0,6"/>
+
+
+        <TextBlock Grid.Row="7"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="6"
+                       FontSize="33"    
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" Margin="0,3,41,22" Grid.RowSpan="2" 
+                       >Old Password</TextBlock>
+
+        <PasswordBox  x:Name="OldPassword"
+                          PasswordChar=""
+                          Grid.Column="1"              
+                          Grid.Row="7"
+                          Grid.ColumnSpan="7"
+                          Grid.RowSpan="3"                  
+                          FontSize="30"
+                          HorizontalContentAlignment="Center"
+                          MaxLength="50" Margin="0,23,0,12"/>
+
+
+
+        <TextBlock Grid.Row="7"
+                       Grid.Column="9"
+                       Grid.ColumnSpan="7"
+                       FontSize="33"    
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" Margin="21,3,21,22" Grid.RowSpan="2"
+                       >New Password</TextBlock>
+
+        <PasswordBox  x:Name="NewPassword"
+                          PasswordChar=""
+                          Grid.Column="9"              
+                          Grid.Row="7"
+                          Grid.ColumnSpan="7"
+                          Grid.RowSpan="3"                  
+                          FontSize="30"
+                          HorizontalContentAlignment="Center"
+                          MaxLength="50" Margin="0,23,0,12"/>
+
+        <Button Name="UpdateButton"
+                Background="#1f4a82"
+                FontSize="25"
+                Content="Update"
+                Height="Auto"
+                Grid.Row="11"
+                Grid.Column="5"
+                Grid.ColumnSpan="7"
+                Grid.RowSpan="2"               
+                Foreground="White"
+                Command="{Binding UpdateUser , UpdateSourceTrigger=PropertyChanged}"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+    </Grid>
+</UserControl>

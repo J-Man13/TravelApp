@@ -1,0 +1,215 @@
+﻿<UserControl x:Class="TravelApp.Views.AppMainViewViews.CitiesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:TravelApp.Views.AppMainViewViews"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+
+             Height="auto" Width="auto"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+             fw:AcrylicWindow.Enabled="True"
+             fw:AcrylicWindow.ShowTitleBar="True"  
+             Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox  x:Name="StartPointTextBox"                          
+                  Grid.Column="0"              
+                  Grid.Row="0"
+                  Grid.ColumnSpan="6"
+                  Grid.RowSpan="1"                  
+                  FontSize="20"
+                  HorizontalContentAlignment="Center"
+                  MaxLength="50"
+                  Text="{Binding StartPoint , UpdateSourceTrigger=PropertyChanged}"
+                  
+        >
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding SearchStartPoint}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                            Gesture="Enter"/>
+            </TextBox.InputBindings>
+        </TextBox>
+
+        <ListBox  x:Name="StartLocationsListBox"
+                  Grid.Column="0"              
+                  Grid.ColumnSpan="6"
+                  Grid.Row="1"
+                  Grid.RowSpan="5"
+                  FontSize="18"
+                  ItemsSource="{Binding ObservableStartPoints, UpdateSourceTrigger=PropertyChanged}"                  
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  Visibility="{Binding StartLocationsListBoxVisibility}"
+                  >
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="Foreground" Value="Green" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding StartLocationSelected}"
+                                           CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+
+        <Image x:Name="StartLocationsLoadingImage"
+               Grid.Column="0"              
+               Grid.ColumnSpan="6"
+               Grid.Row="1"
+               Grid.RowSpan="5"            
+               Visibility="{Binding StartLocationsLoadingImageVisbility}"
+               gif:ImageBehavior.AnimatedSource="\picks\loading.gif"
+               >
+        </Image>
+
+        <TextBox  x:Name="DestinationTextBox"
+                          Grid.Column="7"              
+                          Grid.Row="0"
+                          Grid.ColumnSpan="6"
+                          Grid.RowSpan="1"                  
+                          FontSize="20"
+                          HorizontalContentAlignment="Center"
+                          MaxLength="50"
+                          Text="{Binding Destination , UpdateSourceTrigger=PropertyChanged}"
+        >
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding SearchDestination}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"                            
+                            Gesture="Enter"/>
+            </TextBox.InputBindings>
+        </TextBox>
+
+        <ListBox  x:Name="DestinationLocationsListBox"
+                  Grid.Column="7"              
+                  Grid.ColumnSpan="6"
+                  Grid.Row="1"
+                  Grid.RowSpan="5"
+                  FontSize="18"
+                  ItemsSource="{Binding ObservableDestination, UpdateSourceTrigger=PropertyChanged}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  Visibility="{Binding DestinationLocationsListBoxVisibility , UpdateSourceTrigger=PropertyChanged}"                  >
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="Foreground" Value="Red" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding DestinationLocationSelected}"
+                                           CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+
+        <Image x:Name="DestinationLocationsLoadingImage"
+               Grid.Column="7"              
+               Grid.ColumnSpan="6"
+               Grid.Row="1"
+               Grid.RowSpan="5"
+               Visibility="{Binding DestinationLocationsLoadingImageVisibility}"
+               gif:ImageBehavior.AnimatedSource="\picks\loading.gif">
+        </Image>
+
+        <DockPanel  Grid.Column="13"
+                    Grid.ColumnSpan="4"
+                    Grid.Row="1"
+                    Grid.RowSpan="5"
+                    LastChildFill="True" Margin="37,0,10,0"  
+                  >
+            <Button Width="auto" Height="auto"
+                    Command="{Binding GoRightButtonComand, UpdateSourceTrigger=PropertyChanged}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                    >
+                <Button.Background>
+                    <ImageBrush ImageSource ="\picks\right.png"></ImageBrush>
+                </Button.Background>
+            </Button>
+        </DockPanel>
+
+        <m:Map  x:Name="TripsMap"
+                CredentialsProvider="Am_ut84QqB2v1jVJ6oFFw7UyXjKb3BwOCezecFPYCKX0EexLQ7lu9CpZGxtgPbek"
+                Grid.Column="0"              
+                Grid.ColumnSpan="17"
+                Grid.Row="6"    
+                Grid.RowSpan="8"
+                FontSize="18" 
+            >
+            <m:Pushpin Name="PushPinMe"
+                       Background="Blue"
+                       Content="Me">
+            </m:Pushpin>
+            <m:Pushpin Name="StartPushpin"
+                       Background="Green"
+                       Content="S"
+                       Visibility="{Binding StartPushpinVisibility}"
+                          >
+            </m:Pushpin>
+            <m:Pushpin Name="DestinationPushpin"
+                       Background="Red"
+                       Content="D"
+                       Visibility="{Binding DestinationPushpinVisibility}">
+            </m:Pushpin>
+        </m:Map>
+    </Grid>
+</UserControl>

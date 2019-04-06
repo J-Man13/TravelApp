@@ -1,0 +1,20 @@
+﻿TravelApp
+
+
+winexe
+C#
+.cs
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\
+TravelApp
+none
+false
+DEBUG;TRACE
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\App.xaml
+10-548132596
+
+36860289318
+91-1213880483
+DataTemplates.xaml;Views\AppMainView.xaml;Views\AppMainViewViews\Cities0View.xaml;Views\AppMainViewViews\CitiesView.xaml;Views\AppMainViewViews\TripsView.xaml;Views\AppMainViewViews\UserEntityEditorView.xaml;Views\AppView.xaml;Views\LoginView.xaml;Views\ResetPasswordView.xaml;Views\SignUpView.xaml;
+
+False
+
