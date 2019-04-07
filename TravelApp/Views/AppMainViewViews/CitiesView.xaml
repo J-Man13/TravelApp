@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:TravelApp.Views.AppMainViewViews"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="764" d:DesignWidth="800"
 
              Height="auto" Width="auto"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -18,6 +18,10 @@
              Background="White">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -56,16 +60,15 @@
         </Grid.ColumnDefinitions>
 
         <TextBox  x:Name="StartPointTextBox"                          
-                  Grid.Column="0"              
+                  Grid.Column="1"              
                   Grid.Row="0"
                   Grid.ColumnSpan="6"
                   Grid.RowSpan="1"                  
                   FontSize="20"
                   HorizontalContentAlignment="Center"
                   MaxLength="50"
-                  Text="{Binding StartPoint , UpdateSourceTrigger=PropertyChanged}"
-                  
-        >
+                  Text="{Binding StartPoint , UpdateSourceTrigger=PropertyChanged}"                  
+            >
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding SearchStartPoint}"
                             CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
@@ -74,15 +77,17 @@
         </TextBox>
 
         <ListBox  x:Name="StartLocationsListBox"
-                  Grid.Column="0"              
+                  Grid.Column="1"              
                   Grid.ColumnSpan="6"
                   Grid.Row="1"
-                  Grid.RowSpan="5"
+                  Grid.RowSpan="4"
                   FontSize="18"
                   ItemsSource="{Binding ObservableStartPoints, UpdateSourceTrigger=PropertyChanged}"                  
                   ScrollViewer.HorizontalScrollBarVisibility="Visible"
                   ScrollViewer.VerticalScrollBarVisibility="Visible"
                   Visibility="{Binding StartLocationsListBoxVisibility}"
+                  Width="auto"
+                  Height="auto"    
                   >
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -106,25 +111,25 @@
         </ListBox>
 
         <Image x:Name="StartLocationsLoadingImage"
-               Grid.Column="0"              
-               Grid.ColumnSpan="6"
-               Grid.Row="1"
-               Grid.RowSpan="5"            
-               Visibility="{Binding StartLocationsLoadingImageVisbility}"
-               gif:ImageBehavior.AnimatedSource="\picks\loading.gif"
-               >
+                   Grid.Column="1"              
+                   Grid.ColumnSpan="6"
+                   Grid.Row="1"
+                   Grid.RowSpan="4"            
+                   Visibility="{Binding StartLocationsLoadingImageVisbility}"
+                   gif:ImageBehavior.AnimatedSource="\picks\loading.gif"
+                   >
         </Image>
 
         <TextBox  x:Name="DestinationTextBox"
-                          Grid.Column="7"              
-                          Grid.Row="0"
-                          Grid.ColumnSpan="6"
-                          Grid.RowSpan="1"                  
-                          FontSize="20"
-                          HorizontalContentAlignment="Center"
-                          MaxLength="50"
-                          Text="{Binding Destination , UpdateSourceTrigger=PropertyChanged}"
-        >
+                      Grid.Column="10"              
+                      Grid.Row="0"
+                      Grid.ColumnSpan="6"
+                      Grid.RowSpan="1"                  
+                      FontSize="20"
+                      HorizontalContentAlignment="Center"
+                      MaxLength="50"
+                      Text="{Binding Destination , UpdateSourceTrigger=PropertyChanged}"
+                      >
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding SearchDestination}"
                             CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"                            
@@ -133,10 +138,10 @@
         </TextBox>
 
         <ListBox  x:Name="DestinationLocationsListBox"
-                  Grid.Column="7"              
+                  Grid.Column="10"              
                   Grid.ColumnSpan="6"
                   Grid.Row="1"
-                  Grid.RowSpan="5"
+                  Grid.RowSpan="4"
                   FontSize="18"
                   ItemsSource="{Binding ObservableDestination, UpdateSourceTrigger=PropertyChanged}"
                   ScrollViewer.HorizontalScrollBarVisibility="Visible"
@@ -163,36 +168,20 @@
         </ListBox>
 
         <Image x:Name="DestinationLocationsLoadingImage"
-               Grid.Column="7"              
+               Grid.Column="10"              
                Grid.ColumnSpan="6"
                Grid.Row="1"
-               Grid.RowSpan="5"
+               Grid.RowSpan="4"
                Visibility="{Binding DestinationLocationsLoadingImageVisibility}"
                gif:ImageBehavior.AnimatedSource="\picks\loading.gif">
         </Image>
 
-        <DockPanel  Grid.Column="13"
-                    Grid.ColumnSpan="4"
-                    Grid.Row="1"
-                    Grid.RowSpan="5"
-                    LastChildFill="True" Margin="37,0,10,0"  
-                  >
-            <Button Width="auto" Height="auto"
-                    Command="{Binding GoRightButtonComand, UpdateSourceTrigger=PropertyChanged}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                    >
-                <Button.Background>
-                    <ImageBrush ImageSource ="\picks\right.png"></ImageBrush>
-                </Button.Background>
-            </Button>
-        </DockPanel>
-
         <m:Map  x:Name="TripsMap"
                 CredentialsProvider="Am_ut84QqB2v1jVJ6oFFw7UyXjKb3BwOCezecFPYCKX0EexLQ7lu9CpZGxtgPbek"
-                Grid.Column="0"              
-                Grid.ColumnSpan="17"
-                Grid.Row="6"    
-                Grid.RowSpan="8"
+                Grid.Column="1"              
+                Grid.ColumnSpan="15"
+                Grid.Row="5"    
+                Grid.RowSpan="11"
                 FontSize="18" 
             >
             <m:Pushpin Name="PushPinMe"
@@ -211,5 +200,25 @@
                        Visibility="{Binding DestinationPushpinVisibility}">
             </m:Pushpin>
         </m:Map>
+
+        <!--Margin="37,0,10,0"-->
+        <DockPanel  Grid.Column="7"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="16"
+                    Grid.RowSpan="2"
+                    LastChildFill="True" Margin="24,0,23,0"   
+                  >
+            <Button Width="auto" Height="auto"
+                    Command="{Binding GoRightButtonComand, UpdateSourceTrigger=PropertyChanged}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                    Content="Next"
+                    FontSize="25"
+                    Foreground="White"
+                    Background="#1f4a82"    
+                    >
+            </Button>
+        </DockPanel>
+
+
     </Grid>
 </UserControl>

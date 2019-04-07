@@ -26,9 +26,8 @@
     <Border BorderBrush="#1f4a82" BorderThickness="11">
         <Grid>
             <StackPanel Panel.ZIndex="2" Name="pnlLeftMenu" Orientation="Horizontal" Height="auto" Width="auto" HorizontalAlignment="Left" Margin="-280,0,0,0">
-                <Border BorderBrush="#1f4a82" BorderThickness="0" Width="auto" Background="white" Opacity="0.95">
+                <Border BorderBrush="#1f4a82" BorderThickness="3" Width="auto" Background="white" Opacity="0.95">
                     <StackPanel Orientation="Vertical">
-
                         <TextBlock  DockPanel.Dock="Right"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -121,8 +120,17 @@
                     </StackPanel>
                 </Border>
                 <Grid>
-                    <Button Background="white" Name="btnLeftMenuHide" Width="48" Height="48" Click="btnLeftMenuHide_Click" Content="&lt;" FontSize="20" Visibility="Hidden"/>
-                    <Button Background="white"  Name="btnLeftMenuShow" Width="48" Height="48" Click="btnLeftMenuShow_Click" Content="&gt;" FontSize="20"/>
+                    <Button Name="btnLeftMenuHide" Width="16.5" Height="48" Click="btnLeftMenuHide_Click" FontSize="20" Visibility="Hidden">
+                        <Button.Background>
+                            <ImageBrush ImageSource ="\picks\left.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+
+                    <Button Name="btnLeftMenuShow" Width="16.5" Height="48" Click="btnLeftMenuShow_Click" FontSize="20">
+                        <Button.Background>
+                            <ImageBrush ImageSource ="\picks\right.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
                 </Grid>
             </StackPanel>
 

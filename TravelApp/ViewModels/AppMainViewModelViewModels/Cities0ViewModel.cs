@@ -1,12 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using System;
-using System.Collections.Generic;
+using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using TravelApp.Helpers;
 using TravelApp.Models.TeleportWebApiModels;
 using TravelApp.Services;
@@ -21,10 +16,12 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
         public string DestinationtPointCountryPopulation { get { return destinationtPointCountryPopulation; } set { Set(ref destinationtPointCountryPopulation, value); } }
         private string destinationtPointCountryPopulation;
 
-
+        public string SearchedSalary { get { return searchedSalary; } set { Set(ref searchedSalary, value); } }
+        private string searchedSalary;
 
         public ObservableCollection<TeleportCountrySalary> ObservableSalaries { get { return observableSalaries; } set { Set(ref observableSalaries, value); } }
         private ObservableCollection<TeleportCountrySalary> observableSalaries;
+        private ObservableCollection<TeleportCountrySalary> observableSalariesToStore;
 
         private TeleportSearchedCityDistrictModel startPointCityDistrictModel;
         private TeleportSearchedCityDistrictModel destinationtPointCityDistrictModel;
@@ -44,8 +41,20 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
             DestinationtPointCountryName = "Country : " + DestinationCountryInfo.Name;
             DestinationtPointCountryPopulation = "Population : " + DestinationCountryInfo.Population;
 
+            SearchedSalary = "";
             ObservableSalaries = new ObservableCollection<TeleportCountrySalary>(DestinationCountryInfo.TeleportCountrySalaries);
-
+            observableSalariesToStore = new ObservableCollection<TeleportCountrySalary>(ObservableSalaries);
         }
+
+        
+        private RelayCommand searchSalaries;
+        public RelayCommand SearchSalaries
+        {
+            get => searchSalaries ?? (searchSalaries = new RelayCommand(async () => {
+                ObservableSalaries = new ObservableCollection<TeleportCountrySalary>(
+                    observableSalariesToStore.Where(x => x.SpecialtyName.ToLower().Contains(SearchedSalary.ToLower())).ToList());
+            }));
+        }
+
     }
 }

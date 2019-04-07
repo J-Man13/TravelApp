@@ -40,21 +40,34 @@
                 FontSize="27">
             </TextBlock>
 
-            <ListBox x:Name="ListBoxProcesses"
+            <TextBox x:Name="searchSalariesTextbox"
+                 Text="{Binding SearchedSalary , UpdateSourceTrigger=PropertyChanged}"                 
+                 FontSize="24" 
+                 HorizontalContentAlignment="Center"                 
+                 Margin="5">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding SearchSalaries , UpdateSourceTrigger=PropertyChanged}" Gesture="Enter"/>
+                </TextBox.InputBindings>
+            </TextBox>
+
+
+            <ListBox x:Name="ListBoxSalaries"
                  ItemsSource="{Binding ObservableSalaries, UpdateSourceTrigger=PropertyChanged}"
                  Grid.Row="7"
                  Grid.Column="0"
                  Grid.ColumnSpan="7"
                  Grid.RowSpan="17"
                  Margin="5"
-                 HorizontalAlignment="Stretch"
+                 HorizontalContentAlignment="Stretch"
+                 Background="WhiteSmoke"
+                 Height="300"    
                 >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
                             <TextBlock Text="{Binding SpecialtyName , UpdateSourceTrigger=PropertyChanged}" 
                                        FontSize="22"
-                                       HorizontalAlignment="Left"/> 
+                                       HorizontalAlignment="Left"/>
                             <TextBlock  DockPanel.Dock="Right"
                                         Text="{Binding SalaryPerMonth, UpdateSourceTrigger=PropertyChanged}" 
                                         FontSize="22"               
@@ -62,7 +75,6 @@
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-        
             </ListBox>
         
         </StackPanel>

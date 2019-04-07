@@ -82,8 +82,8 @@ namespace TravelApp.Services
         {
             TeleportCountryInfo teleportCountryInfo = new TeleportCountryInfo();
 
-            //try
-            //{
+            try
+            {
                 JObject jObjectCountry = GetJObject(countryLink);
                 teleportCountryInfo.Name = jObjectCountry["name"].Value<string>();
                 teleportCountryInfo.CurrencyCode = jObjectCountry["currency_code"].Value<string>();
@@ -92,20 +92,20 @@ namespace TravelApp.Services
                 teleportCountryInfo.Population = jObjectCountry["population"].Value<int>();
                 teleportCountryInfo.TeleportCountrySalaries = GetTeleportCountrySalaries(((jObjectCountry["_links"])["country:salaries"])["href"].Value<string>());
 
-            //}
-            //catch (Exception e)
-            //{
-            //    MessageBox.Show(e.ToString());
-            //    return null;
-            //}
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return null;
+            }
             return teleportCountryInfo;
         }
 
         public IEnumerable<TeleportCountrySalary> GetTeleportCountrySalaries(string countrySalariesLink)
         {
             LinkedList<TeleportCountrySalary> teleportCountrySalaries = new LinkedList<TeleportCountrySalary>();
-            //try
-            //{
+            try
+            {
                 JObject jObjectCountrySalaries = GetJObject(countrySalariesLink);
                 JArray jArraySalaries = jObjectCountrySalaries["salaries"] as JArray;
                 foreach (JObject j in jArraySalaries)
@@ -115,12 +115,12 @@ namespace TravelApp.Services
                     teleportCountrySalary.SalaryPerMonth = (int)((j["salary_percentiles"])["percentile_75"].Value<double>() / 12);
                     teleportCountrySalaries.AddLast(teleportCountrySalary);
                 }
-            //}
-            //catch(Exception e)
-            //{
-            //    MessageBox.Show(e.ToString());
-            //    return null;
-            //}
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return null;
+            }
             return teleportCountrySalaries;
         }
 
