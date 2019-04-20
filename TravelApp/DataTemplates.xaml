@@ -37,4 +37,13 @@
     <DataTemplate DataType="{x:Type vm_ApplicationMain:Cities0ViewModel}">
         <v_ApplicationMain:Cities0View/>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm_ApplicationMain:Cities1ViewModel}">
+        <v_ApplicationMain:Cities1View/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm_ApplicationMain:Cities2ViewModel}">
+        <v_ApplicationMain:Cities2View/>
+    </DataTemplate>
+    
 </ResourceDictionary>

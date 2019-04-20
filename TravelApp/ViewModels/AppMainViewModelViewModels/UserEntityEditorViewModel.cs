@@ -83,7 +83,7 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
                 bool hasBeenUpdated = false;
                 await Task.Run(() => 
                 {
-                    hasBeenUpdated = iUserService.UpdateUserData(CurrentUserEntity.UserEntity.Id, CurrentUserEntity.UserEntity);
+                    hasBeenUpdated = iUserService.UpdateUserData(CurrentUserEntity.UserEntity) != null;
                     if (!hasBeenUpdated)
                         MessageBox.Show("Something went wrong on local DB service side");
                 });

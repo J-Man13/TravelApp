@@ -11,6 +11,7 @@ using System.Windows.Media;
 using TravelApp.Helpers;
 using TravelApp.Models.TeleportWebApiModels;
 using TravelApp.Services;
+using TravelApp.Views;
 using TravelApp.Views.AppMainViewViews;
 
 
@@ -90,7 +91,7 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
 
         public CitiesViewModel()
         {
-            teleportApiServices = new TeleportDistrictCountryWebService();
+            teleportApiServices = new TeleportDistrictCountryWebApi();
             StartPoint = "Start Point";
             Destination = "Destination";
 
@@ -215,13 +216,13 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
         }
 
         
-        private RelayCommand<object> goRightButtonComand;
-        public RelayCommand<object> GoRightButtonComand
+        private RelayCommand<object> goNextButtonComand;
+        public RelayCommand<object> GoNextButtonComand
         {
-            get => goRightButtonComand ?? (goRightButtonComand = new RelayCommand<object>(async (obj) => {
+            get => goNextButtonComand ?? (goNextButtonComand = new RelayCommand<object>((obj) => {
                 if(startSearchedCityDistrictModel == null || destinationtSearchedCityDistrictModel == null)
                 {
-                    MessageBox.Show("start or destination point not selected");
+                    MessageBox.Show("Start or destination point not selected");
                     return;
                 }
                 CurrentTeleportSearchedCityDistrictModels.StartPointTeleportSearchedCityDistrictModel = startSearchedCityDistrictModel;
@@ -255,6 +256,7 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
 
                 map.Children.Add(mapPolyline);
             }
+
         }        
     }
 }

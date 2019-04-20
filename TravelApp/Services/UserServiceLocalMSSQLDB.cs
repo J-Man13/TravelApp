@@ -26,7 +26,6 @@ namespace TravelApp.Services
                 MessageBox.Show(e.ToString());
                 return null;
             }
-
         }
 
         public UserEntity FindUserByLogin(string Login)
@@ -34,8 +33,7 @@ namespace TravelApp.Services
             try
             {
                 using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
-                {
-      
+                {      
                     return localTravelAppMSSQLDBContext.UserEntities.Where(u => u.UserName.Equals(Login)).AsEnumerable().FirstOrDefault(u => u.UserName.Equals(Login));
                 }
             }
@@ -46,61 +44,26 @@ namespace TravelApp.Services
             }
         }
 
-
-        public bool UpdateUserData(string UserLogin, UserEntity User)
+        public UserEntity UpdateUserData(UserEntity user)
         {
             try
             {
                 using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
                 {
-                    UserEntity userToUpdate = localTravelAppMSSQLDBContext.UserEntities.Where(u => u.UserName.Equals(UserLogin))
-                                              .AsEnumerable().First(u => u.UserName.Equals(UserLogin));
-                    if (userToUpdate == null)
-                        return false;
-                    else
+                    UserEntity ue = localTravelAppMSSQLDBContext.UserEntities.Find(user.UserName);
+                    if (ue != null)
                     {
-                        userToUpdate.PasswordHash = User.PasswordHash;
-                        userToUpdate.UserName = User.UserName;
-                        userToUpdate.UserEmail = User.UserEmail;
-                        userToUpdate.UserLoginImagePath = User.UserLoginImagePath;
+                        localTravelAppMSSQLDBContext.Entry(ue).CurrentValues.SetValues(user);
                         localTravelAppMSSQLDBContext.SaveChanges();
-                        return true;
                     }
+                    return ue;
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
-                return false;
+                return null;
             }
         }
-
-        public bool UpdateUserData(long Id, UserEntity User)
-        {
-            try
-            {
-                using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
-                {
-                    UserEntity userToUpdate = localTravelAppMSSQLDBContext.UserEntities.Where(u => u.Id.Equals(Id)).FirstOrDefault();
-                    if (userToUpdate == null)
-                        return false;
-                    else
-                    {
-                        userToUpdate.PasswordHash = User.PasswordHash;
-                        userToUpdate.UserName = User.UserName;
-                        userToUpdate.UserEmail = User.UserEmail;
-                        userToUpdate.UserLoginImagePath = User.UserLoginImagePath;
-                        localTravelAppMSSQLDBContext.SaveChanges();
-                        return true;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString());
-                return false;
-            }
-        }
-
     }
 }

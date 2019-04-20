@@ -21,12 +21,9 @@ namespace TravelApp.Views.AppMainViewViews
     /// </summary>
     public partial class Cities0View : UserControl
     {
-        private Cities0ViewModel cities0ViewModel;
         public Cities0View()
         {
             InitializeComponent();
-            cities0ViewModel = new Cities0ViewModel();
-            DataContext = cities0ViewModel;
         }
     }
 }

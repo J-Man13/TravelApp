@@ -1,0 +1,211 @@
+﻿<UserControl x:Class="TravelApp.Views.AppMainViewViews.Cities1View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TravelApp.Views.AppMainViewViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="1408.559" d:DesignWidth="800"
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             Height="auto" Width="auto"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+             fw:AcrylicWindow.Enabled="True"
+             fw:AcrylicWindow.ShowTitleBar="True"  
+             Background="White"
+    >
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock
+                Margin="20,5,20,5"
+                HorizontalAlignment="Center"
+                Text="{Binding DestinationtPointFullName , UpdateSourceTrigger=PropertyChanged}"
+                FontSize="30"
+                >
+            </TextBlock>
+
+
+            <RichTextBox
+                Background="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                Margin="20,5,20,5"
+                HorizontalAlignment="Center"
+                IsReadOnly="True">
+                <FlowDocument PageHeight="auto"
+                              PageWidth="auto">
+                    <Paragraph>
+                        <Run Text="{Binding DestinationtPointDescription , UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="25"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            
+
+
+
+            <m:Map x:Name="destMap"
+                   Margin="15,5,15,5"
+                   CredentialsProvider="Am_ut84QqB2v1jVJ6oFFw7UyXjKb3BwOCezecFPYCKX0EexLQ7lu9CpZGxtgPbek"
+                   Height="370">
+                <m:Pushpin Name="DestinationPushpin"
+                       Background="Red"
+                       Content="D"
+                       Visibility="{Binding DestinationPushpinVisibility}">
+                </m:Pushpin>
+            </m:Map>
+            
+            <TextBlock
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    Text="{Binding DestinationtPointPopulation, UpdateSourceTrigger=PropertyChanged}"    
+                    FontSize="27">
+            </TextBlock>
+                       
+            <TextBlock
+                Margin="20,5,20,5"
+                HorizontalAlignment="Center"
+                Text="Destinationt point details"
+                FontSize="27">
+            </TextBlock>
+
+            <ListBox 
+                 ItemsSource="{Binding ObservableCategoryTypes, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="7"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="7"
+                 Grid.RowSpan="17"
+                 Margin="20,5,20,5"
+                 HorizontalContentAlignment="Stretch"
+                 Background="WhiteSmoke"
+                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                 SelectedItem="{Binding ObservableCategoryType, UpdateSourceTrigger=PropertyChanged}"
+                >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectCategoryType, UpdateSourceTrigger=PropertyChanged}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding CategoryType , UpdateSourceTrigger=PropertyChanged}" 
+                                   FontSize="24"
+                                   HorizontalAlignment="Left"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <ListBox 
+                 ItemsSource="{Binding ObservableCategories, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="7"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="7"
+                 Grid.RowSpan="17"
+                 Margin="20,5,20,5"
+                 HorizontalContentAlignment="Stretch"
+                 Background="WhiteSmoke"
+                 Height="300"    
+                 Visibility="{Binding ObservableCategoriesVisibility , UpdateSourceTrigger=PropertyChanged}"
+                >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <TextBlock Text="{Binding Label , UpdateSourceTrigger=PropertyChanged}" 
+                                       FontSize="21"
+                                       HorizontalAlignment="Left"/>
+                            <TextBlock  DockPanel.Dock="Right"
+                                        Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" 
+                                        FontSize="22"               
+                                        HorizontalAlignment="Right"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock
+                Margin="20,5,20,5"
+                HorizontalAlignment="Center"
+                Text="Destinationt point scores"
+                FontSize="27">
+            </TextBlock>
+
+            <TextBox
+                Text="{Binding SearchedScore, UpdateSourceTrigger=PropertyChanged}"
+                FontSize="23"
+                Margin="20,5,20,5"
+                HorizontalContentAlignment="Center">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding SearchScores , UpdateSourceTrigger=PropertyChanged}" Gesture="Enter"/>
+                </TextBox.InputBindings>
+            </TextBox>
+
+            <ListBox 
+                 ItemsSource="{Binding ObservableScores, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="7"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="7"
+                 Grid.RowSpan="17"
+                 Margin="20,5,20,5"
+                 HorizontalContentAlignment="Stretch"
+                 Background="WhiteSmoke"
+                 Height="300"    
+                 Visibility="{Binding ObservableCategoriesVisibility , UpdateSourceTrigger=PropertyChanged}"
+                >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <TextBlock Text="{Binding Name , UpdateSourceTrigger=PropertyChanged}" 
+                                       FontSize="21"
+                                       HorizontalAlignment="Left"/>
+                            <TextBlock  DockPanel.Dock="Right"
+                                        Text="{Binding Score_out_of_10, UpdateSourceTrigger=PropertyChanged}" 
+                                        FontSize="21"               
+                                        HorizontalAlignment="Right"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel HorizontalAlignment="Center"
+                        Orientation="Horizontal"
+                        Width="auto"
+                        Margin="20,5,20,5"
+                        >
+                <Button Width="120" Height="80"
+                    Command="{Binding GoNextButtonComand, UpdateSourceTrigger=PropertyChanged}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                    Content="Next"
+                    FontSize="25"
+                    Foreground="White"
+                    Background="#1f4a82"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Margin="0,0,50,0"
+                    />
+                <Button Width="120" Height="80"
+                    Command="{Binding GoBackButtonComand, UpdateSourceTrigger=PropertyChanged}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                    Content="Back"
+                    FontSize="25"
+                    Foreground="White"
+                    Background="#1f4a82"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    />
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

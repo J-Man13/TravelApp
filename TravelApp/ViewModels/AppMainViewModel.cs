@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.IO;
-using System.Windows;
 using System.Windows.Media.Imaging;
 using TravelApp.Helpers;
 using TravelApp.ViewModels.AppMainViewModelViewModels;
@@ -37,7 +36,6 @@ namespace TravelApp.ViewModels
                 dlg.DefaultExt = ".png";
                 dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
                 dlg.ShowDialog();
-
 
                 string imagePath = dlg.FileName;
                 if (String.IsNullOrEmpty(imagePath))

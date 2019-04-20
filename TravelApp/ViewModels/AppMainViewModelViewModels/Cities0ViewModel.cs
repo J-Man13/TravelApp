@@ -5,6 +5,7 @@ using System.Linq;
 using TravelApp.Helpers;
 using TravelApp.Models.TeleportWebApiModels;
 using TravelApp.Services;
+using TravelApp.Views.AppMainViewViews;
 
 namespace TravelApp.ViewModels.AppMainViewModelViewModels
 {
@@ -35,9 +36,14 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
             startPointCityDistrictModel = CurrentTeleportSearchedCityDistrictModels.StartPointTeleportSearchedCityDistrictModel;
             destinationtPointCityDistrictModel = CurrentTeleportSearchedCityDistrictModels.DestinationPointTeleportSearchedCityDistrictModel;
 
-            iteleportDistrictCountryServices = new TeleportDistrictCountryWebService();
-            DestinationCountryInfo = iteleportDistrictCountryServices.GetTeleportCountryInfo(destinationtPointCityDistrictModel.CountryLink);
+            iteleportDistrictCountryServices = new TeleportDistrictCountryWebApi();
 
+            InitCountryInfo();
+        }
+
+        private void InitCountryInfo()
+        {
+            DestinationCountryInfo = iteleportDistrictCountryServices.GetTeleportCountryInfo(destinationtPointCityDistrictModel.CountryLink);
             DestinationtPointCountryName = "Country : " + DestinationCountryInfo.Name;
             DestinationtPointCountryPopulation = "Population : " + DestinationCountryInfo.Population;
 
@@ -45,7 +51,6 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
             ObservableSalaries = new ObservableCollection<TeleportCountrySalary>(DestinationCountryInfo.TeleportCountrySalaries);
             observableSalariesToStore = new ObservableCollection<TeleportCountrySalary>(ObservableSalaries);
         }
-
         
         private RelayCommand searchSalaries;
         public RelayCommand SearchSalaries
@@ -56,5 +61,24 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
             }));
         }
 
+        private RelayCommand<object> goNextButtonComand;
+        public RelayCommand<object> GoNextButtonComand
+        {
+            get => goNextButtonComand ?? (goNextButtonComand = new RelayCommand<object>((obj) => {
+                if(string.IsNullOrEmpty(destinationtPointCityDistrictModel.UrbanAreaLink))
+                    (obj as Cities0View).Content = new Cities2ViewModel();
+                else
+                    (obj as Cities0View).Content = new Cities1ViewModel();
+            }));
+        }
+
+        private RelayCommand<object> goBackButtonComand;
+        public RelayCommand<object> GoBackButtonComand
+        {
+            get => goBackButtonComand ?? (goBackButtonComand = new RelayCommand<object>((obj) =>
+            {
+                (obj as Cities0View).Content = new CitiesViewModel();
+            }));
+        }
     }
 }

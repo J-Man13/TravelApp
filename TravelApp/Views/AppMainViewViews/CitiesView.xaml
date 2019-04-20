@@ -206,10 +206,11 @@
                     Grid.ColumnSpan="3"
                     Grid.Row="16"
                     Grid.RowSpan="2"
-                    LastChildFill="True" Margin="24,0,23,0"   
+                    LastChildFill="True"
+                    Margin="5"
                   >
             <Button Width="auto" Height="auto"
-                    Command="{Binding GoRightButtonComand, UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding GoNextButtonComand, UpdateSourceTrigger=PropertyChanged}"
                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                     Content="Next"
                     FontSize="25"

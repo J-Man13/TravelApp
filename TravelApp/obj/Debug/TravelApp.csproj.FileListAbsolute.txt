@@ -72,8 +72,12 @@ C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Deb
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\SharpVectors.Rendering.Gdi.dll
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\SharpVectors.Rendering.Wpf.dll
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\SharpVectors.Runtime.dll
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\WpfAnimatedGif.dll
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\WPFToolkit.dll
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\EntityFramework.xml
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\GalaSoft.MvvmLight.pdb
@@ -89,8 +93,11 @@ C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Deb
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\WpfAnimatedGif.xml
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\TravelApp.csprojResolveAssemblyReference.cache
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainView.g.cs
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\Cities0View.g.cs
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\Cities1View.g.cs
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\Cities2View.g.cs
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\CitiesView.g.cs
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\TripsView.g.cs
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\UserEntityEditorView.g.cs
@@ -106,6 +113,8 @@ C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Deb
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\DataTemplates.baml
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainView.baml
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\Cities0View.baml
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\Cities1View.baml
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\Cities2View.baml
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\CitiesView.baml
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\TripsView.baml
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\UserEntityEditorView.baml
@@ -120,4 +129,3 @@ C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Deb
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\TravelApp.csproj.CopyComplete
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\TravelApp.exe
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\TravelApp.pdb
-C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\TravelApp.csprojResolveAssemblyReference.cache

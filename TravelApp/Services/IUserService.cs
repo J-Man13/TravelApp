@@ -11,7 +11,6 @@ namespace TravelApp.Services
     {
         UserEntity RegistrateUser(UserEntity userEntity);
         UserEntity FindUserByLogin(string Login);
-        bool UpdateUserData(string userLogin, UserEntity User);
-        bool UpdateUserData(long Id, UserEntity User);
+        UserEntity UpdateUserData(UserEntity User);
     }
 }

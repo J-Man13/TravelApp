@@ -58,7 +58,7 @@ namespace TravelApp.ViewModels
                 }
 
                 us.PasswordHash = Md5Transformer.GetMd5String((obj as ResetPasswordView).NewPassword.Password);
-                if (userService.UpdateUserData(us.UserName, us))
+                if (userService.UpdateUserData(us) != null)
                     MessageBox.Show("Password successfully updated");
                 else
                     MessageBox.Show("Something went wrong");
