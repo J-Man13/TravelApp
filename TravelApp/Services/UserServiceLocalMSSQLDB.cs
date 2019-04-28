@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using TravelApp.Models.EntityModels;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 
 namespace TravelApp.Services
 {
@@ -55,13 +56,9 @@ namespace TravelApp.Services
             {
                 using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
                 {
-                    UserEntity ue = localTravelAppMSSQLDBContext.UserEntities.Find(user.UserName);
-                    if (ue != null)
-                    {
-                        localTravelAppMSSQLDBContext.Entry(ue).CurrentValues.SetValues(user);
-                        localTravelAppMSSQLDBContext.SaveChanges();
-                    }
-                    return ue;
+                    localTravelAppMSSQLDBContext.UserEntities.AddOrUpdate(user);
+                    localTravelAppMSSQLDBContext.SaveChanges();
+                    return user;
                 }
             }
             catch (Exception e)
