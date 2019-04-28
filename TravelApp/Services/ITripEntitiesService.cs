@@ -7,10 +7,11 @@ using TravelApp.Models.EntityModels;
 
 namespace TravelApp.Services
 {
-    interface ITripEntities
+    interface ITripEntitiesService
     {
-        TripEntity AddTripEntity(TripEntity tripEntity);
+        bool AddTripEntity(TripEntity tripEntity);
         TripEntity UpdateTripEntity(TripEntity tripEntity);
-        TripEntity DeleteTripEntity(TripEntity tripEntity);
+        bool DeleteTripEntity(TripEntity tripEntity);
+        bool DeleteTripEntity(long id);
     }
 }

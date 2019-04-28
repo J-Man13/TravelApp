@@ -4,45 +4,82 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TravelApp.Helpers;
 using TravelApp.Models.EntityModels;
 
 namespace TravelApp.Services
 {
-    public class TripEntitiesLocalMSSQLDB : ITripEntities
+    public class TripEntitiesLocalMSSQLDB : ITripEntitiesService
     {
-        public TripEntity AddTripEntity(TripEntity tripEntity)
+        public bool AddTripEntity(TripEntity tripEntity)
         {
             try
             {
                 using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
                 {
-                    TripEntity te = localTravelAppMSSQLDBContext.TripEntities.Add(tripEntity);
+                    CurrentUserEntity.UserEntity.TripEntities.Add(tripEntity);                    
+                    localTravelAppMSSQLDBContext.TripEntities.Add(tripEntity);
                     localTravelAppMSSQLDBContext.SaveChanges();
-                    return te;
+                    return true;
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
-                return null;
+                return false;
             }
         }
 
-        public TripEntity DeleteTripEntity(TripEntity tripEntity)
+        public bool DeleteTripEntity(TripEntity tripEntity)
         {
             try
             {
                 using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
                 {
-                    TripEntity te = localTravelAppMSSQLDBContext.TripEntities.Remove(tripEntity);
+                    bool removedPerUser = CurrentUserEntity.UserEntity.TripEntities.ToList().
+                    Remove(CurrentUserEntity.UserEntity.TripEntities.ToList().Where(t => t.Id == tripEntity.Id).FirstOrDefault());
+
+                    bool removedFromTrips = localTravelAppMSSQLDBContext.TripEntities.ToList().
+                    Remove(localTravelAppMSSQLDBContext.TripEntities.ToList().Where(t => t.Id == tripEntity.Id).FirstOrDefault());
+
                     localTravelAppMSSQLDBContext.SaveChanges();
-                    return te;
+
+                    if (removedPerUser && removedFromTrips)
+                        return true;
+                    else
+                        return false;
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
-                return null;
+                return false;
+            }
+        }
+
+        public bool DeleteTripEntity(long id)
+        {
+            try
+            {
+                using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
+                {
+                    bool removedPerUser = CurrentUserEntity.UserEntity.TripEntities.
+                    Remove(CurrentUserEntity.UserEntity.TripEntities.ToList().Where(t => t.Id == id).FirstOrDefault());
+
+                    TripEntity removedFromTrips = localTravelAppMSSQLDBContext.TripEntities.Remove(localTravelAppMSSQLDBContext.TripEntities.ToList().Where(t => t.Id == id).FirstOrDefault());
+
+                    localTravelAppMSSQLDBContext.SaveChanges();
+
+                    if (removedPerUser && removedFromTrips != null)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
             }
         }
 
@@ -52,7 +89,7 @@ namespace TravelApp.Services
             {
                 using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
                 {
-                    TripEntity te = localTravelAppMSSQLDBContext.TripEntities.Find(tripEntity.Id);
+                    TripEntity te = CurrentUserEntity.UserEntity.TripEntities.FirstOrDefault(t => t.Id == tripEntity.Id);
                     if (te != null)
                     {
                         localTravelAppMSSQLDBContext.Entry(te).CurrentValues.SetValues(tripEntity);

@@ -14,6 +14,7 @@ namespace TravelApp.Models.EntityModels
         public string UserEmail { get; set;}
         public string PasswordHash { get; set;}
 
-        public ICollection<TripEntity> TripEntities { get; set;}
+        public ICollection<TripEntity> TripEntities { get;  set;}
+
     }
 }

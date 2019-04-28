@@ -23,8 +23,8 @@ namespace TravelApp.ViewModels
         public AppMainViewModel()
         {
             CurrentUserLogin = CurrentUserEntity.UserEntity.UserName;
-            ContentTop = "Trips";
-            CurrentContentPage = new TripsViewModel();
+            ContentTop = "Cities";
+            CurrentContentPage = new CitiesViewModel();
         }
 
         private RelayCommand<Object> updatePicture;

@@ -33,7 +33,7 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
         private TeleportSearchedCityDistrictModel destinationtSearchedCityDistrictModel;
 
         private IUserService iUserService;
-        private ITripEntities iTripEntities;
+        private ITripEntitiesService iTripEntitiesService;
 
         public Cities2ViewModel()
         {
@@ -51,7 +51,7 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
                 DestinationImageSource = bitmapImage;
 
             iUserService = new UserServiceLocalMSSQLDB();
-            iTripEntities = new TripEntitiesLocalMSSQLDB();
+            iTripEntitiesService = new TripEntitiesLocalMSSQLDB();
         }
 
         private RelayCommand<object> goBackButtonComand;
@@ -72,29 +72,40 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
         {
             get => addTripButtonComand ?? (addTripButtonComand = new RelayCommand<object>((obj) =>
             {
-                if (SelectedDepartmentDate.CompareTo(DateTime.Today) < 1)
+                if (SelectedDepartmentDate.Date.CompareTo(DateTime.Today) < 0)
                 {
-                    MessageBox.Show("Department date must be greater than current date");
+                    MessageBox.Show("Department date must be greater or equal current date");
                     return;
                 }
 
-                if (SelectedArrivalDate.CompareTo(DateTime.Today) < 1)
+                if (SelectedArrivalDate.Date.CompareTo(DateTime.Today) < 0)
                 {
-                    MessageBox.Show("Arrival date must be greater than current date");
+                    MessageBox.Show("Arrival date must be greater or equal current date");
                     return;
                 }
 
-                TripEntity tripEntity = iTripEntities.AddTripEntity(new TripEntity()
-                {                    
+                if (SelectedDepartmentDate.Date.CompareTo(SelectedArrivalDate.Date) != -1)
+                {
+                    MessageBox.Show("Department date must be greater than arrival date");
+                    return;
+                }
+
+
+                TripEntity tripEntity = new TripEntity()
+                {
                     FromSearchedCityDistrictModel = CurrentTeleportSearchedCityDistrictModels.StartPointTeleportSearchedCityDistrictModel,
                     ToSearchedCityDistrictModel = CurrentTeleportSearchedCityDistrictModels.DestinationPointTeleportSearchedCityDistrictModel,
                     DepartmentDateTime = selectedDepartmentDate,
                     ArrivalDateTime = selectedArrivalDate,
                     TripAim = TripAimDescription,
-                    UserEntity = CurrentUserEntity.UserEntity,
                     UserEntityId = CurrentUserEntity.UserEntity.Id
-                });
-                CurrentUserEntity.UserEntity.TripEntities.Add(tripEntity);
+                };
+
+                if (iTripEntitiesService.AddTripEntity(tripEntity))
+                    MessageBox.Show("Trip successfully added");
+                else
+                    MessageBox.Show("Error accured while adding");
+
             }));
         }
 

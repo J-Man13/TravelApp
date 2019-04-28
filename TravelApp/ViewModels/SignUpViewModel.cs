@@ -66,29 +66,20 @@ namespace TravelApp.ViewModels
                     return;
                 }
 
-                UserEntity user = null;
-                await  Task.Run(() => 
+                UserEntity user = new UserEntity()
                 {
-                    user = new UserEntity()
-                    {
-                        PasswordHash = Md5Transformer.GetMd5String((obj as SignUpView).Password.Password),
-                        UserEmail = MailSignUp,
-                        UserName = LoginSignUp.Trim(),
-                        UserLoginImagePath = Directory.GetCurrentDirectory() + "\\login_images\\" + LoginSignUp.Trim() + ".png"
-                    };
+                    PasswordHash = Md5Transformer.GetMd5String((obj as SignUpView).Password.Password),
+                    UserEmail = MailSignUp,
+                    UserName = LoginSignUp.Trim(),
+                    UserLoginImagePath = Directory.GetCurrentDirectory() + "\\login_images\\" + LoginSignUp.Trim() + ".png"
+                };
 
-                    user = iUserService.RegistrateUser(user);
-                    if(user != null && user.Id!=0 && user.Id != -1)
-                    {                        
-                        CurrentUserEntity.UserEntity = user;
-                        SaveImage(img, "login_images\\" + loginSignUp.Trim() + ".png");
-                    }
-                });
-
+                user = iUserService.RegistrateUser(user);
+                
                 if (user != null && user.Id != 0 && user.Id != -1)
                 {
+                    CurrentUserEntity.UserEntity = user;
                     SaveImage(img, "login_images\\" + loginSignUp.Trim() + ".png");
-                    //Application.Current.Dispatcher.Invoke(() => (obj as SignUpView).Content = new AppMainViewModel());
                     (obj as SignUpView).Content = new AppMainViewModel();
                 }
                 else

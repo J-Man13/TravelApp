@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using TravelApp.Models.EntityModels;
+using System.Collections.Generic;
 
 namespace TravelApp.Services
 {
@@ -34,7 +35,13 @@ namespace TravelApp.Services
             {
                 using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
                 {      
-                    return localTravelAppMSSQLDBContext.UserEntities.Where(u => u.UserName.Equals(Login)).AsEnumerable().FirstOrDefault(u => u.UserName.Equals(Login));
+                    UserEntity ue = localTravelAppMSSQLDBContext.UserEntities.AsEnumerable().FirstOrDefault(u => u.UserName.Equals(Login));
+                    if (ue != null)
+                    {
+                        ue.TripEntities = new HashSet<TripEntity>(localTravelAppMSSQLDBContext.TripEntities.
+                                          Where(t => t.UserEntityId == ue.Id));
+                    }
+                    return ue;
                 }
             }
             catch (Exception e)

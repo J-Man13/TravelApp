@@ -11,8 +11,9 @@ namespace TravelApp.Models.EntityModels
     {
         public LocalTravelAppMSSQLDBContext() : base("DefaultConnection")
         {
-           Database.SetInitializer(new MigrateDatabaseToLatestVersion<LocalTravelAppMSSQLDBContext, TravelApp.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LocalTravelAppMSSQLDBContext, TravelApp.Migrations.Configuration>());
         }
+
 
         public DbSet<UserEntity> UserEntities { get; set; }
         public DbSet<TripEntity> TripEntities { get; set; }
@@ -20,12 +21,6 @@ namespace TravelApp.Models.EntityModels
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
-            modelBuilder.Entity<TripEntity>().
-            HasRequired<UserEntity>(t => t.UserEntity).
-            WithMany(u => u.TripEntities).
-            HasForeignKey<long>(t => t.UserEntityId);
-
         }
     }
 }

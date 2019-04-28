@@ -169,7 +169,7 @@
     <Compile Include="Models\TeleportWebApiModels\TeleportSearchedCityDistrictScoresInfo.cs" />
     <Compile Include="Services\ITeleportDestination_sCategoriesScoresImagesService.cs" />
     <Compile Include="Services\ITeleportDistrictCountryServices.cs" />
-    <Compile Include="Services\ITripEntities.cs" />
+    <Compile Include="Services\ITripEntitiesService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\TeleportDestination_sCategoriesDetailsImagesServiceWebApi.cs" />
     <Compile Include="Services\TeleportDistrictCountryWebApi.cs" />

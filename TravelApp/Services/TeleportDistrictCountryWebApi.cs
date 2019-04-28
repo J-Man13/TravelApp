@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using TravelApp.Models.TeleportWebApiModels;
 
@@ -25,50 +26,73 @@ namespace TravelApp.Services
             try
             {
                 JObject jObject = GetJObject(TELEPORT_API_URL+city);
-                foreach (JObject j in (jObject["_embedded"])["city:search-results"] as JArray) {
 
-                    string infoGeonameIdLink = ((j["_links"])["city:item"])["href"].Value<String>();
-                    string fullName = j["matching_full_name"].Value<String>();
+                List<Task> taskList = new List<Task>();
 
-                    JObject jObjectGeonameId = GetJObject(infoGeonameIdLink);
-                    double lattitude = ((jObjectGeonameId["location"])["latlon"])["latitude"].Value<double>();
-                    double longtitude = ((jObjectGeonameId["location"])["latlon"])["longitude"].Value<double>();
+                 foreach (JObject j in (jObject["_embedded"])["city:search-results"] as JArray) {
+                    Task task = new Task( () => { 
+                        string infoGeonameIdLink = ((j["_links"])["city:item"])["href"].Value<String>();
+                        string fullName = j["matching_full_name"].Value<String>();
 
-                    string countryLink = ((jObjectGeonameId["_links"])["city:country"])["href"].Value<string>();
-                    JObject jObjectCountry = GetJObject(countryLink);
-                    string countrySalariesLink = ((jObjectCountry["_links"])["country:salaries"])["href"].Value<string>();
+                        JObject jObjectGeonameId = GetJObject(infoGeonameIdLink);
+                        double lattitude = ((jObjectGeonameId["location"])["latlon"])["latitude"].Value<double>();
+                        double longtitude = ((jObjectGeonameId["location"])["latlon"])["longitude"].Value<double>();
 
-                    string urbanAreaLink = "";
-                    string urbanAreaSalariesLink = "";
-                    string urbanAreaDetailsLink = "";
-                    string urbanAreaScoresLink = "";
-                    string urbanAreaImagesLink = "";
+                        string countryLink = ((jObjectGeonameId["_links"])["city:country"])["href"].Value<string>();
 
-                    if ((jObjectGeonameId["_links"])["city:urban_area"] != null)
-                    {
-                        urbanAreaLink = ((jObjectGeonameId["_links"])["city:urban_area"])["href"].Value<string>();
-                        JObject jObjectUrbanArea = GetJObject(urbanAreaLink);
-                        urbanAreaSalariesLink = ((jObjectUrbanArea["_links"])["ua:salaries"])["href"].Value<string>();
-                        urbanAreaDetailsLink = ((jObjectUrbanArea["_links"])["ua:details"])["href"].Value<string>();
-                        urbanAreaScoresLink = ((jObjectUrbanArea["_links"])["ua:scores"])["href"].Value<string>();
-                        urbanAreaImagesLink = ((jObjectUrbanArea["_links"])["ua:images"])["href"].Value<string>();
-                    }
-                      
-                    searchedCityDistrictModelsLinkedList.AddLast(new TeleportSearchedCityDistrictModel()
-                    {
-                        InfoGeonameIdLink = infoGeonameIdLink,
-                        Lattitude = lattitude,
-                        FullName = fullName,
-                        Longtitude = longtitude,
-                        CountryLink = countryLink,
-                        CountrySalariesLink = countrySalariesLink,
-                        UrbanAreaLink = urbanAreaLink,
-                        UrbanAreaSalariesLink = urbanAreaSalariesLink,
-                        UrbanAreaDetailsLink = urbanAreaDetailsLink,
-                        UrbanAreaScoresLink = urbanAreaScoresLink,
-                        UrbanAreaImagesLink = urbanAreaImagesLink
+                        string countrySalariesLink = "";
+
+                        string urbanAreaLink = "";
+                        string urbanAreaSalariesLink = "";
+                        string urbanAreaDetailsLink = "";
+                        string urbanAreaScoresLink = "";
+                        string urbanAreaImagesLink = "";
+
+                        Task linksSetterTask = new Task( () => {
+                            if ((jObjectGeonameId["_links"])["city:urban_area"] != null)
+                            {
+                                urbanAreaLink = ((jObjectGeonameId["_links"])["city:urban_area"])["href"].Value<string>();
+                                JObject jObjectUrbanArea = GetJObject(urbanAreaLink);
+                                urbanAreaSalariesLink = ((jObjectUrbanArea["_links"])["ua:salaries"])["href"].Value<string>();
+                                urbanAreaDetailsLink = ((jObjectUrbanArea["_links"])["ua:details"])["href"].Value<string>();
+                                urbanAreaScoresLink = ((jObjectUrbanArea["_links"])["ua:scores"])["href"].Value<string>();
+                                urbanAreaImagesLink = ((jObjectUrbanArea["_links"])["ua:images"])["href"].Value<string>();
+                            }
+                        });
+
+                        Task countriesLinkGetterTask = new Task(() => {
+                            JObject jObjectCountry = GetJObject(countryLink);
+                            countrySalariesLink = ((jObjectCountry["_links"])["country:salaries"])["href"].Value<string>();
+                        });
+
+                        List<Task> innerTaskList = new List<Task>();
+                        linksSetterTask.Start();
+                        countriesLinkGetterTask.Start();
+                        innerTaskList.Add(linksSetterTask);
+                        innerTaskList.Add(countriesLinkGetterTask);
+
+                        Task.WaitAll(innerTaskList.ToArray());
+
+                        searchedCityDistrictModelsLinkedList.AddLast(new TeleportSearchedCityDistrictModel()
+                        {
+                            InfoGeonameIdLink = infoGeonameIdLink,
+                            Lattitude = lattitude,
+                            FullName = fullName,
+                            Longtitude = longtitude,
+                            CountryLink = countryLink,
+                            CountrySalariesLink = countrySalariesLink,
+                            UrbanAreaLink = urbanAreaLink,
+                            UrbanAreaSalariesLink = urbanAreaSalariesLink,
+                            UrbanAreaDetailsLink = urbanAreaDetailsLink,
+                            UrbanAreaScoresLink = urbanAreaScoresLink,
+                            UrbanAreaImagesLink = urbanAreaImagesLink
+                        });
+
                     });
+                    task.Start();
+                    taskList.Add(task);
                 }
+                Task.WaitAll(taskList.ToArray());
             }
             catch (Exception E)
             {
@@ -81,7 +105,6 @@ namespace TravelApp.Services
         public TeleportCountryInfo GetTeleportCountryInfo(string countryLink)
         {
             TeleportCountryInfo teleportCountryInfo = new TeleportCountryInfo();
-
             try
             {
                 JObject jObjectCountry = GetJObject(countryLink);

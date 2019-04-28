@@ -124,7 +124,6 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
 
                 });
             });
-
         }
 
         private RelayCommand<object> searchStartPoint;
