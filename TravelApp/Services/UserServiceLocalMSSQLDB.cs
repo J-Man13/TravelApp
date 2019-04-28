@@ -24,7 +24,6 @@ namespace TravelApp.Services
             }
             catch(Exception e)
             {
-                MessageBox.Show(e.ToString());
                 return null;
             }
         }
@@ -46,7 +45,6 @@ namespace TravelApp.Services
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
                 return null;
             }
         }
@@ -68,7 +66,6 @@ namespace TravelApp.Services
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
                 return null;
             }
         }

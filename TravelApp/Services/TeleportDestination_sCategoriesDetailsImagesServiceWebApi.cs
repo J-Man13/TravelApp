@@ -42,9 +42,8 @@ namespace TravelApp.Services
                     teleportSearchedCityDistrictCategoriesModels.AddLast(teleportSearchedCityDistrictCategoriesModel);
                 }
             }
-            catch(Exception e)
+            catch(Exception )
             {
-                MessageBox.Show(e.ToString());
                 return null;
             }
 
@@ -59,8 +58,8 @@ namespace TravelApp.Services
             {
                 JObject jObject = GetJObject(urbanAreaScoresLink);
 
-                String summary = jObject["summary"].Value<string>().Replace("<p>","").Replace("</p>","")
-                .Replace("</b>","").Replace("\n","").Replace("<b>","").Replace("  ","").Replace(".", " . ");
+                String summary = jObject["summary"].Value<string>().Replace("<p>","").Replace("</p>","").Replace("<i>", "").Replace("</i>", "")
+                .Replace("</b>","").Replace("\n","").Replace("<b>","").Replace("  ","").Replace(".", " . ").Replace("<br>", "").Replace("</br>", "");
                 teleportSearchedCityDistrictScoresInfo.Summary = summary;
                 teleportSearchedCityDistrictScoresInfo.CityScore = jObject["teleport_city_score"].Value<int>();
 
@@ -77,9 +76,8 @@ namespace TravelApp.Services
 
                 teleportSearchedCityDistrictScoresInfo.TeleportSearchedCityDistrictScores = teleportSearchedCityDistrictScores;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show(e.ToString());
                 return null;
             }
             return teleportSearchedCityDistrictScoresInfo;
@@ -92,7 +90,6 @@ namespace TravelApp.Services
                 return new BitmapImage(new Uri(imageUrl));
             }
             catch(Exception e) {
-                MessageBox.Show(e.ToString());
                 return null;
             }
         }

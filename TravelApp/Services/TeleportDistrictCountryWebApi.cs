@@ -96,7 +96,6 @@ namespace TravelApp.Services
             }
             catch (Exception E)
             {
-                MessageBox.Show("GetSearchedCityDistrictModel : " + E.ToString());
                 return null;
             }
             return searchedCityDistrictModelsLinkedList;
@@ -118,7 +117,6 @@ namespace TravelApp.Services
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
                 return null;
             }
             return teleportCountryInfo;
@@ -141,7 +139,6 @@ namespace TravelApp.Services
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
                 return null;
             }
             return teleportCountrySalaries;

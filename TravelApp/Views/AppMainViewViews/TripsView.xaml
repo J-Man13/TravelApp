@@ -83,7 +83,7 @@
 
                             <StackPanel HorizontalAlignment="Center"
                                         Orientation="Horizontal">
-                                <TextBlock Text="{Binding ArrivalDateTimeString , UpdateSourceTrigger=PropertyChanged}"
+                                <TextBlock Text="{Binding DepartmentDateTimeString, UpdateSourceTrigger=PropertyChanged}"
                                            FontSize="14"
                                  />
 
@@ -92,7 +92,7 @@
                                            Margin="10,0,10,0"
                                  />
 
-                                <TextBlock Text="{Binding DepartmentDateTimeString , UpdateSourceTrigger=PropertyChanged}"
+                                <TextBlock Text="{Binding ArrivalDateTimeString, UpdateSourceTrigger=PropertyChanged}"
                                      FontSize="14"
                                      />
                             </StackPanel>
