@@ -157,6 +157,7 @@
     <Compile Include="Helpers\CurrentUserEntity.cs" />
     <Compile Include="Helpers\Md5Transformer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Adapters\TripEntityAdapter.cs" />
     <Compile Include="Models\EntityModels\LocalTravelAppMSSQLDBContext.cs" />
     <Compile Include="Models\EntityModels\TripEntity.cs" />
     <Compile Include="Models\EntityModels\UserEntity.cs" />

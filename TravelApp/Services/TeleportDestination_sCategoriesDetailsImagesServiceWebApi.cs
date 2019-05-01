@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -85,11 +87,23 @@ namespace TravelApp.Services
 
         public BitmapImage GetSearchedCityImage(string urbanAreaImagesLink)
         {
-            try { 
-                string imageUrl = (((((GetJObject(urbanAreaImagesLink))["photos"] as JArray)[0] as JObject)["image"]) as JObject)["mobile"].Value<String>();          
-                return new BitmapImage(new Uri(imageUrl));
+            try
+            {
+                string imageUrl = (((((GetJObject(urbanAreaImagesLink))["photos"] as JArray)[0] as JObject)["image"]) as JObject)["mobile"].Value<String>();
+                var buffer = new WebClient().DownloadData(imageUrl);
+                var image = new BitmapImage();
+                using (var stream = new MemoryStream(buffer))
+                {
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.StreamSource = stream;
+                    image.EndInit();
+                }
+                image.Freeze();
+                return image;
             }
-            catch(Exception e) {
+            catch (Exception e)
+            {
                 return null;
             }
         }

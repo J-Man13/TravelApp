@@ -25,16 +25,33 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
         private Visibility loadingVisbility;
 
         private ITripEntitiesService tripEntitiesService;
+        private ITeleportDestination_sCategoriesScoresImagesService iTeleportDestination_SCategoriesScoresImagesService;
 
         public TripsViewModel()
         {
             ObservableTripsVisibility = Visibility.Hidden;
             LoadingVisbility = Visibility.Visible;
 
+            iTeleportDestination_SCategoriesScoresImagesService = new TeleportDestination_sCategoriesDetailsImagesServiceWebApi();
+
             Task.Run(() =>
             {
-                List<TripEntity> tripEntities = new List<TripEntity>(CurrentUserEntity.UserEntity.TripEntities);
-                App.Current.Dispatcher.Invoke(() =>
+                List<TripEntity> tripEntities = new List<TripEntity>();
+                foreach (TripEntity t in CurrentUserEntity.UserEntity.TripEntities)
+                    tripEntities.Add(new TripEntity()
+                    {
+                        Id = t.Id,
+                        ArrivalDateTime = t.ArrivalDateTime,
+                        DepartmentDateTime = t.DepartmentDateTime,
+                        TripAim = t.TripAim,
+                        FromSearchedCityDistrictModel = t.FromSearchedCityDistrictModel,
+                        ToSearchedCityDistrictModel = t.ToSearchedCityDistrictModel,
+                        UserEntityId = t.UserEntityId,
+                        DestinationCityImage = iTeleportDestination_SCategoriesScoresImagesService.
+                                               GetSearchedCityImage(t.ToSearchedCityDistrictModel.UrbanAreaImagesLink)
+                    });
+
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     ObservableTrips = new ObservableCollection<TripEntity>(tripEntities);
                 });

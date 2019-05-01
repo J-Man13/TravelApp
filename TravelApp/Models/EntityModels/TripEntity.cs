@@ -22,15 +22,17 @@ namespace TravelApp.Models.EntityModels
         public long UserEntityId { get; set; }
 
         [NotMapped]
+        public BitmapImage destinationCityImage;
+        [NotMapped]
         public BitmapImage DestinationCityImage
         {
             get
             {
-                if(!String.IsNullOrEmpty(ToSearchedCityDistrictModel.UrbanAreaImagesLink))
-                    return iTeleportDestination_SCategoriesScoresImagesService.
-                    GetSearchedCityImage(ToSearchedCityDistrictModel.UrbanAreaImagesLink);
-                else
-                    return null;
+                return destinationCityImage;
+            }
+            set
+            {
+                destinationCityImage = value;
             }
         }
 
