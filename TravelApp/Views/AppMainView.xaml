@@ -16,10 +16,10 @@
     >
     <UserControl.Resources>
         <Storyboard x:Key="sbShowLeftMenu" >
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-280,0,0,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-280,0,0,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:0.65" />
         </Storyboard>
         <Storyboard x:Key="sbHideLeftMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-280,0,0,0" AccelerationRatio=".9" Duration="0:0:1" />
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-280,0,0,0" AccelerationRatio=".9" Duration="0:0:0.65" />
         </Storyboard>
     </UserControl.Resources>
 

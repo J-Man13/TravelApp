@@ -72,7 +72,7 @@ namespace TravelApp.ViewModels
                     UserEmail = MailSignUp,
                     UserName = LoginSignUp.Trim(),
                     UserLoginImagePath = Directory.GetCurrentDirectory() + "\\login_images\\" + LoginSignUp.Trim() + ".png"
-                };
+                }; 
 
                 user = iUserService.RegistrateUser(user);
                 
