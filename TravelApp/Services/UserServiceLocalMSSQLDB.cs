@@ -11,22 +11,23 @@ namespace TravelApp.Services
     {
         public UserEntity RegistrateUser(UserEntity userEntity)
         {
-            //try
-            //{
+            try
+            {
                 using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
                 {
                     if (localTravelAppMSSQLDBContext.UserEntities.Where(u => u.UserName.Equals(userEntity.UserName)).
                         AsEnumerable().FirstOrDefault(u => u.UserName.Equals(userEntity.UserName)) != null)
                         return null;
                     UserEntity ue = localTravelAppMSSQLDBContext.UserEntities.Add(userEntity);
+                    ue.TripEntities = new HashSet<TripEntity>();
                     localTravelAppMSSQLDBContext.SaveChanges();
                     return ue;
                 }
-            //}
-            //catch(Exception e)
-            //{
-            //    return null;
-            //}
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public UserEntity FindUserByLogin(string Login)
