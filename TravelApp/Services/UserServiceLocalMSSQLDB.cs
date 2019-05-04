@@ -11,8 +11,8 @@ namespace TravelApp.Services
     {
         public UserEntity RegistrateUser(UserEntity userEntity)
         {
-            try
-            {
+            //try
+            //{
                 using (LocalTravelAppMSSQLDBContext localTravelAppMSSQLDBContext = new LocalTravelAppMSSQLDBContext())
                 {
                     if (localTravelAppMSSQLDBContext.UserEntities.Where(u => u.UserName.Equals(userEntity.UserName)).
@@ -22,11 +22,11 @@ namespace TravelApp.Services
                     localTravelAppMSSQLDBContext.SaveChanges();
                     return ue;
                 }
-            }
-            catch(Exception e)
-            {
-                return null;
-            }
+            //}
+            //catch(Exception e)
+            //{
+            //    return null;
+            //}
         }
 
         public UserEntity FindUserByLogin(string Login)
