@@ -93,7 +93,6 @@ C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Deb
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\WpfAnimatedGif.xml
-C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\TravelApp.csprojResolveAssemblyReference.cache
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainView.g.cs
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\Cities0View.g.cs
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\Cities1View.g.cs
@@ -208,3 +207,4 @@ C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\TravelApp.Properties.Resources.
 C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\TravelApp.csproj.GenerateResource.cache
 C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\TravelApp.csproj.CoreCompileInputs.cache
 C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\TravelApp.csproj.CopyComplete
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\TravelApp.csprojAssemblyReference.cache
