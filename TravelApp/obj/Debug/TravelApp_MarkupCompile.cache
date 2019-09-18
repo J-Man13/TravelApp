@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\
 TravelApp
 none
 false
 DEBUG;TRACE
-C:\Users\Dzaf_sx51\TravelApp\TravelApp\App.xaml
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\App.xaml
 121604465530
 
-48964480081
-97-439078687
+52-721650959
+971980495494
 DataTemplates.xaml;Views\AppMainView.xaml;Views\AppMainViewViews\Cities0View.xaml;Views\AppMainViewViews\Cities1View.xaml;Views\AppMainViewViews\Cities2View.xaml;Views\AppMainViewViews\CitiesView.xaml;Views\AppMainViewViews\TripsView.xaml;Views\AppMainViewViews\UserEntityEditorView.xaml;Views\AppView.xaml;Views\LoginView.xaml;Views\ResetPasswordView.xaml;Views\SignUpView.xaml;
 
-False
+True
 
