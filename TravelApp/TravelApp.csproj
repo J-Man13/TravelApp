@@ -106,6 +106,9 @@
     <Reference Include="SharpVectors.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d16e717f0a981fb9, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpVectors.1.0\lib\net20\SharpVectors.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="StatePrinter, Version=3.0.0.0, Culture=neutral, PublicKeyToken=693eec472ad792e3, processorArchitecture=MSIL">
+      <HintPath>..\packages\StatePrinter.3.0.1\lib\net35\StatePrinter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -160,6 +163,7 @@
     <Compile Include="Models\EntityModels\LocalTravelAppMSSQLDBContext.cs" />
     <Compile Include="Models\EntityModels\TripEntity.cs" />
     <Compile Include="Models\EntityModels\UserEntity.cs" />
+    <Compile Include="Models\OpenWeatherWebApiModels\WeatherModel.cs" />
     <Compile Include="Models\TeleportWebApiModels\TeleportCountrySalary.cs" />
     <Compile Include="Models\TeleportWebApiModels\TeleportSearchedCityDistrictCategoriesModel.cs" />
     <Compile Include="Models\TeleportWebApiModels\TeleportSearchedCityDistrictCategoryModel.cs" />
@@ -167,6 +171,7 @@
     <Compile Include="Models\TeleportWebApiModels\TeleportCountryInfo.cs" />
     <Compile Include="Models\TeleportWebApiModels\TeleportSearchedCityDistrictScore.cs" />
     <Compile Include="Models\TeleportWebApiModels\TeleportSearchedCityDistrictScoresInfo.cs" />
+    <Compile Include="Services\IWeatherModelsService.cs" />
     <Compile Include="Services\ITeleportDestination_sCategoriesScoresImagesService.cs" />
     <Compile Include="Services\ITeleportDistrictCountryServices.cs" />
     <Compile Include="Services\ITripEntitiesService.cs" />
@@ -175,6 +180,7 @@
     <Compile Include="Services\TeleportDistrictCountryWebApi.cs" />
     <Compile Include="Services\TripEntitiesLocalMSSQLDB.cs" />
     <Compile Include="Services\UserServiceLocalMSSQLDB.cs" />
+    <Compile Include="Services\WeatherModelsWebService.cs" />
     <Compile Include="ViewModels\AppMainViewModel.cs" />
     <Compile Include="ViewModels\AppMainViewModelViewModels\Cities0ViewModel.cs" />
     <Compile Include="ViewModels\AppMainViewModelViewModels\Cities1ViewModel.cs" />

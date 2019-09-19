@@ -208,3 +208,4 @@ C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\TravelApp.csproj.GenerateResour
 C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\TravelApp.csproj.CoreCompileInputs.cache
 C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\TravelApp.csproj.CopyComplete
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\TravelApp.csprojAssemblyReference.cache
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\StatePrinter.dll
