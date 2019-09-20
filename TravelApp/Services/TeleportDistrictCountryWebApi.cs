@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using TravelApp.Models.TeleportWebApiModels;
+
+using System.Threading.Tasks;
 
 namespace TravelApp.Services
 {
@@ -73,24 +73,29 @@ namespace TravelApp.Services
 
                         Task.WaitAll(innerTaskList.ToArray());
 
-                        searchedCityDistrictModelsLinkedList.AddLast(new TeleportSearchedCityDistrictModel()
+                        lock (searchedCityDistrictModelsLinkedList)
                         {
-                            InfoGeonameIdLink = infoGeonameIdLink,
-                            Lattitude = lattitude,
-                            FullName = fullName,
-                            Longtitude = longtitude,
-                            CountryLink = countryLink,
-                            CountrySalariesLink = countrySalariesLink,
-                            UrbanAreaLink = urbanAreaLink,
-                            UrbanAreaSalariesLink = urbanAreaSalariesLink,
-                            UrbanAreaDetailsLink = urbanAreaDetailsLink,
-                            UrbanAreaScoresLink = urbanAreaScoresLink,
-                            UrbanAreaImagesLink = urbanAreaImagesLink
-                        });
-
+                            searchedCityDistrictModelsLinkedList.AddLast(new TeleportSearchedCityDistrictModel()
+                            {
+                                InfoGeonameIdLink = infoGeonameIdLink,
+                                Lattitude = lattitude,
+                                FullName = fullName,
+                                Longtitude = longtitude,
+                                CountryLink = countryLink,
+                                CountrySalariesLink = countrySalariesLink,
+                                UrbanAreaLink = urbanAreaLink,
+                                UrbanAreaSalariesLink = urbanAreaSalariesLink,
+                                UrbanAreaDetailsLink = urbanAreaDetailsLink,
+                                UrbanAreaScoresLink = urbanAreaScoresLink,
+                                UrbanAreaImagesLink = urbanAreaImagesLink
+                            });
+                        }
                     });
                     task.Start();
-                    taskList.Add(task);
+                    lock (taskList)
+                    {
+                        taskList.Add(task);
+                    }
                 }
                 Task.WaitAll(taskList.ToArray());
             }

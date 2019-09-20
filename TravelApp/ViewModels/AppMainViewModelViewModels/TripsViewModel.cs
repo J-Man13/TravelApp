@@ -73,5 +73,15 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
             }));
         }
 
+        private RelayCommand goToDescriptionButtonComand;
+        public RelayCommand GoToDescriptionButtonComand
+        {
+            get => goToDescriptionButtonComand ?? (goToDescriptionButtonComand = new RelayCommand(() =>
+            {
+
+                ;
+            }));
+        }
+
     }
 }

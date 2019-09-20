@@ -41,7 +41,7 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="10"  BorderBrush="#1f4a82" BorderThickness="2">
+                    <Border Margin="10"  BorderBrush="#1f4a82" BorderThickness="2" Width="400">
                         <StackPanel Orientation="Vertical" 
                             >
                             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -97,16 +97,26 @@
                                      />
                             </StackPanel>
 
-
-                            <Button  HorizontalAlignment="Center"
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button  HorizontalAlignment="Center"
+                                     Name="descriptionButton"
+                                     Background="LightGreen"
+                                     Content="Description"
+                                     Command="{Binding Path=DataContext.GoToDescriptionButtonComand ,UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                     Visibility="{Binding Visibility}"
+                                     Width="110" Height="65"
+                                     Margin="0,0,30,0"
+                                />
+                                <Button  HorizontalAlignment="Center"
                                      Name="killButton"
                                      Background="Red"
-                                     Content="Delete Trip" 
+                                     Content="Delete Trip"
                                      Command="{Binding Path=DataContext.DeleteTripButtonComand ,UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=ListBox}}"
                                      CommandParameter="{Binding Id ,UpdateSourceTrigger=PropertyChanged}"
                                      Visibility="{Binding Visibility}"
-                                     Width="100" Height="65"
-                            />
+                                     Width="110" Height="65"
+                                />
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

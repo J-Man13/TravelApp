@@ -209,3 +209,5 @@ C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\TravelApp.csproj.CoreCompileInp
 C:\Users\Dzaf_sx51\TravelApp\TravelApp\obj\Debug\TravelApp.csproj.CopyComplete
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\TravelApp.csprojAssemblyReference.cache
 C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\bin\Debug\StatePrinter.dll
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\TripDescriptionView.g.cs
+C:\Users\cafar\Documents\Visual Studio 2017\Projects\TravelApp\TravelApp\obj\Debug\Views\AppMainViewViews\TripDescriptionView.baml

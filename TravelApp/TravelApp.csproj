@@ -186,6 +186,7 @@
     <Compile Include="ViewModels\AppMainViewModelViewModels\Cities1ViewModel.cs" />
     <Compile Include="ViewModels\AppMainViewModelViewModels\Cities2ViewModel.cs" />
     <Compile Include="ViewModels\AppMainViewModelViewModels\CitiesViewModel.cs" />
+    <Compile Include="ViewModels\AppMainViewModelViewModels\TripDescriptionViewModel.cs" />
     <Compile Include="ViewModels\AppMainViewModelViewModels\TripsViewModel.cs" />
     <Compile Include="ViewModels\AppMainViewModelViewModels\UserEntityEditorViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
@@ -206,6 +207,9 @@
     </Compile>
     <Compile Include="Views\AppMainViewViews\CitiesView.xaml.cs">
       <DependentUpon>CitiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AppMainViewViews\TripDescriptionView.xaml.cs">
+      <DependentUpon>TripDescriptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AppMainViewViews\TripsView.xaml.cs">
       <DependentUpon>TripsView.xaml</DependentUpon>
@@ -279,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AppMainViewViews\CitiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AppMainViewViews\TripDescriptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
