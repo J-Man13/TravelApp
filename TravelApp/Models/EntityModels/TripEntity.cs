@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StatePrinting;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Windows.Media.Imaging;
@@ -64,6 +65,13 @@ namespace TravelApp.Models.EntityModels
         public int CompareTo(object obj)
         {
             return Id.CompareTo((obj as TripEntity).Id);
+        }
+
+        // Nice stuff ahead!
+        static readonly Stateprinter printer = new Stateprinter();
+        public override string ToString()
+        {
+            return printer.PrintObject(this);
         }
     }
 }

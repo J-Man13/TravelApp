@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              xmlns:local="clr-namespace:TravelApp.Views.AppMainViewViews"
              mc:Ignorable="d" 
 
@@ -14,7 +15,69 @@
              fw:AcrylicWindow.ShowTitleBar="True"  
              Background="White"             
              >
-    <Grid>
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock
+                Margin="20,5,20,5"
+                HorizontalAlignment="Center"
+                Text="{Binding DestinationtPointFullName , UpdateSourceTrigger=PropertyChanged}"
+                FontSize="30"
+                >
+            </TextBlock>
+
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        >
+                <TextBlock
+                Margin="0,5,0,5"                 
+                Text="{Binding DestinationtPointTemperature , UpdateSourceTrigger=PropertyChanged}"
+                FontSize="25"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"    
+                />
+                <Image Width="50" Height="50" 
+                   Margin="0,5,0,5" 
+                   Source="{Binding WeatherIconUri , UpdateSourceTrigger=PropertyChanged}"
+                   HorizontalAlignment="Center" />
+            </StackPanel>
+
+            <TextBlock
+                Margin="20,5,20,5"
+                HorizontalAlignment="Center"
+                Text="{Binding DestinationtPointPressure , UpdateSourceTrigger=PropertyChanged}"
+                FontSize="25"
+                >
+            </TextBlock>
+
+            <TextBlock
+                Margin="20,5,20,5"
+                HorizontalAlignment="Center"
+                Text="{Binding DestinationtPointWindSpeed , UpdateSourceTrigger=PropertyChanged}"
+                FontSize="25"
+                >
+            </TextBlock>
+
+            <TextBlock
+                Margin="20,5,20,5"
+                HorizontalAlignment="Center"
+                Text="{Binding DestinationtPointHumidity , UpdateSourceTrigger=PropertyChanged}"
+                FontSize="25"
+                >
+            </TextBlock>
+
+            <m:Map x:Name="destMap"
+                   Margin="80,5,80,5"
+                   CredentialsProvider="Am_ut84QqB2v1jVJ6oFFw7UyXjKb3BwOCezecFPYCKX0EexLQ7lu9CpZGxtgPbek"
+                   Height="600"
+                   >
+                <m:Pushpin x:Name="DestinationPushpin"
+                       Background="Red"
+                       Content="D"
+                       Visibility="{Binding DestinationPushpinVisibility}"/>
+            </m:Map>
+                        
             
-    </Grid>
+        </StackPanel>
+    </ScrollViewer>            
 </UserControl>

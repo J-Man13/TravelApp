@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StatePrinting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace TravelApp.Models.TeleportWebApiModels
     {
         public string InfoGeonameIdLink { get;set; }
         public string FullName { get; set; }
+        public string Name { get; set; }
         public double Lattitude { get; set; }
         public double Longtitude { get; set; }
 
@@ -24,9 +26,11 @@ namespace TravelApp.Models.TeleportWebApiModels
         public string UrbanAreaScoresLink { get; set; }
         public string UrbanAreaImagesLink { get; set; }
 
+        // Nice stuff ahead!
+        static readonly Stateprinter printer = new Stateprinter();
         public override string ToString()
         {
-            return FullName;
+            return printer.PrintObject(this);
         }
     }
 }

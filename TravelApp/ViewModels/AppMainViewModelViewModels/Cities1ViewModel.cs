@@ -97,5 +97,6 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
                 (obj as Cities1View).Content = new Cities0ViewModel();
             }));
         }
+
     }
 }

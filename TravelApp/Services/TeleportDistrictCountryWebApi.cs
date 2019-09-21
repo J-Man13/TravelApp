@@ -34,11 +34,13 @@ namespace TravelApp.Services
                         string infoGeonameIdLink = ((j["_links"])["city:item"])["href"].Value<String>();
                         string fullName = j["matching_full_name"].Value<String>();
 
+
                         JObject jObjectGeonameId = GetJObject(infoGeonameIdLink);
                         double lattitude = ((jObjectGeonameId["location"])["latlon"])["latitude"].Value<double>();
                         double longtitude = ((jObjectGeonameId["location"])["latlon"])["longitude"].Value<double>();
 
                         string countryLink = ((jObjectGeonameId["_links"])["city:country"])["href"].Value<string>();
+                        string name = jObjectGeonameId["name"].Value<String>();     
 
                         string countrySalariesLink = "";
 
@@ -80,6 +82,7 @@ namespace TravelApp.Services
                                 InfoGeonameIdLink = infoGeonameIdLink,
                                 Lattitude = lattitude,
                                 FullName = fullName,
+                                Name = name,
                                 Longtitude = longtitude,
                                 CountryLink = countryLink,
                                 CountrySalariesLink = countrySalariesLink,

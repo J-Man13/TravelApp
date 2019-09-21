@@ -10,12 +10,13 @@ using System.Windows;
 using TravelApp.Helpers;
 using TravelApp.Models.EntityModels;
 using TravelApp.Services;
+using TravelApp.Views.AppMainViewViews;
 
 namespace TravelApp.ViewModels.AppMainViewModelViewModels
 {
     public class TripsViewModel : ViewModelBase
     {
-        public ObservableCollection<TripEntity> ObservableTrips { get { return observableTrips; } set{ Set(ref observableTrips,value);} }
+        public ObservableCollection<TripEntity> ObservableTrips { get { return observableTrips; } set { Set(ref observableTrips, value); } }
         private ObservableCollection<TripEntity> observableTrips;
 
         public Visibility ObservableTripsVisibility { get { return observableTripsVisibility; } set { Set(ref observableTripsVisibility, value); } }
@@ -69,17 +70,20 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
             get => deleteTripButtonComand ?? (deleteTripButtonComand = new RelayCommand<long>((id) =>
             {
                 ObservableTrips.Remove(ObservableTrips.Where(t => t.Id == id).FirstOrDefault());
-                tripEntitiesService.DeleteTripEntity(id);                
+                tripEntitiesService.DeleteTripEntity(id);
             }));
         }
 
-        private RelayCommand goToDescriptionButtonComand;
-        public RelayCommand GoToDescriptionButtonComand
+        private RelayCommand<Object> goToDescriptionSelectComand;
+        public RelayCommand<Object> GoToDescriptionSelectComand
         {
-            get => goToDescriptionButtonComand ?? (goToDescriptionButtonComand = new RelayCommand(() =>
+            get => goToDescriptionSelectComand ?? (goToDescriptionSelectComand = new RelayCommand<Object>((obj) =>
             {
-
-                ;
+                TripsView tripsView = (obj as TripsView);
+                if (tripsView.ListBoxTrips.SelectedItem == null)
+                    return;
+                CurrentUserEntity.SelectedTripEntity =  tripsView.ListBoxTrips.SelectedItem as TripEntity;
+                tripsView.Content = new TripDescriptionViewModel();
             }));
         }
 

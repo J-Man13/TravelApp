@@ -15,6 +15,12 @@ namespace TravelApp.Helpers
             get {return userEntity;}
             set { userEntity = value; }
         }
+        private static TripEntity selectedTripEntity;
+        public static TripEntity SelectedTripEntity
+        {
+            get { return selectedTripEntity; }
+            set { selectedTripEntity = value; }
+        }
 
     }
 }
