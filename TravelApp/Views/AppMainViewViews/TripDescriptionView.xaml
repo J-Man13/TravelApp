@@ -76,7 +76,19 @@
                        Content="D"
                        Visibility="{Binding DestinationPushpinVisibility}"/>
             </m:Map>
-                        
+
+            <Button Width="120" Height="80"
+                    Command="{Binding GoBackButtonComand, UpdateSourceTrigger=PropertyChanged}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                    Content="Back"
+                    FontSize="25"
+                    Foreground="White"
+                    Background="#1f4a82"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    />
             
         </StackPanel>
     </ScrollViewer>            

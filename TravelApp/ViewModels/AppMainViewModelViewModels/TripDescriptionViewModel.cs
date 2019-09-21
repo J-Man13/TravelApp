@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using TravelApp.Helpers;
 using TravelApp.Models.OpenWeatherWebApiModels;
 using TravelApp.Services;
+using TravelApp.Views.AppMainViewViews;
 
 namespace TravelApp.ViewModels.AppMainViewModelViewModels
 {
@@ -50,7 +52,14 @@ namespace TravelApp.ViewModels.AppMainViewModelViewModels
         public string WeatherIconUri { get { return weatherIconUri; } set { Set(ref weatherIconUri, value); } }
         private string weatherIconUri;
 
+        private RelayCommand<object> goBackButtonComand;
+        public RelayCommand<object> GoBackButtonComand
+        {
+            get => goBackButtonComand ?? (goBackButtonComand = new RelayCommand<object>((obj) =>
+            {
+                (obj as TripDescriptionView).Content = new TripsViewModel();
+            }));
+        }
 
-        
     }
 }
